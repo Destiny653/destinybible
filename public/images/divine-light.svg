@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Radial gradient background -->
+  <defs>
+    <radialGradient id="radialGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#f5b700" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f5b700" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Glowing background -->
+  <circle cx="250" cy="250" r="150" fill="url(#radialGlow)" opacity="0.7"/>
+  
+  <!-- Bible with cross -->
+  <g filter="url(#glow)">
+    <!-- Bible -->
+    <rect x="150" y="180" width="200" height="240" rx="10" ry="10" fill="#f5b700" stroke="#ffffff" stroke-width="2"/>
+    <rect x="150" y="180" width="200" height="240" rx="10" ry="10" fill="none" stroke="#ffffff" stroke-width="2"/>
+    
+    <!-- Bible pages -->
+    <path d="M250,180 L250,420" stroke="#ffffff" stroke-width="2"/>
+    <path d="M170,220 L230,220" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,240 L230,240" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,260 L230,260" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,280 L230,280" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,300 L230,300" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,320 L230,320" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,340 L230,340" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,360 L230,360" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M170,380 L230,380" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    
+    <path d="M270,220 L330,220" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,240 L330,240" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,260 L330,260" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,280 L330,280" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,300 L330,300" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,320 L330,320" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,340 L330,340" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,360 L330,360" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    <path d="M270,380 L330,380" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
+    
+    <!-- Cross -->
+    <path d="M250,80 L250,180" stroke="#f5b700" stroke-width="15" stroke-linecap="round"/>
+    <path d="M200,130 L300,130" stroke="#f5b700" stroke-width="15" stroke-linecap="round"/>
+    
+    <!-- Light rays -->
+    <g opacity="0.8">
+      <path d="M250,80 L250,40" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+      <path d="M250,80 L290,40" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+      <path d="M300,130 L340,130" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+      <path d="M290,180 L330,220" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+      <path d="M250,180 L250,140" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+      <path d="M200,130 L160,130" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+      <path d="M200,80 L160,40" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+      <path d="M200,180 L160,220" stroke="#f5b700" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,451 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold-gradient: linear-gradient(to right bottom, #fef3c7, #fcd34d);
+    --gold-gradient-hover: linear-gradient(to right bottom, #fcd34d, #f59e0b);
+  }
+
+  html {
+    @apply h-full w-full;
+    height: 100%;
+  }
+  
+  body {
+    @apply h-full w-full m-0 p-0;
+    @apply bg-gradient-to-br from-amber-50 via-white to-amber-50 text-amber-900;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply antialiased;
+    min-height: 100%;
+    @apply bg-gradient-to-br from-amber-50 to-white;
+  }
+  
+  #root {
+    @apply h-full w-full;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  button {
+    @apply touch-manipulation select-none box-border transition-all;
+    -webkit-tap-highlight-color: transparent;
+    @apply bg-primary text-white hover:bg-primary-light active:bg-primary-dark;
+    @apply dark:bg-primary dark:text-white dark:hover:bg-primary-light dark:active:bg-primary-dark;
+  }
+
+  a, input, select, textarea {
+    @apply box-border;
+  }
+
+  a {
+    @apply text-primary hover:text-primary-light;
+    @apply dark:text-primary-light dark:hover:text-primary;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-light font-cinzel;
+    @apply dark:text-text-dark;
+    @apply font-serif;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-amber-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-amber-300 rounded-full hover:bg-amber-400 transition-colors;
+    @apply bg-amber-300 rounded-full hover:bg-amber-400;
+  }
+}
+
+@layer components {
+  .app-container {
+    @apply flex flex-col h-screen w-screen fixed top-0 left-0 overflow-hidden;
+    background-image: url('/images/subtle-pattern.png');
+    background-repeat: repeat;
+    background-size: 200px;
+  }
+  
+  .app-header {
+    @apply flex items-center p-4 bg-primary text-white shadow-lg z-50 h-[72px] flex-shrink-0;
+  }
+  
+  .app-title {
+    @apply m-0 text-2xl font-bold flex-grow text-center font-cinzel tracking-wide cursor-pointer relative inline-block transition-all;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    will-change: transform;
+  }
+  
+  .menu-button {
+    @apply bg-transparent border-none text-white cursor-pointer p-2 flex items-center justify-center z-50;
+  }
+  
+  .app-content {
+    @apply flex flex-grow relative overflow-hidden;
+    height: calc(100vh - 72px - 60px);
+  }
+  
+  .app-sidebar {
+    @apply w-[280px] bg-white border-r border-gray-200 overflow-y-auto fixed top-[72px] bottom-[60px] left-0 z-10 shadow-md -translate-x-full transition-transform;
+  }
+  
+  .app-sidebar.open {
+    @apply translate-x-0;
+  }
+  
+  .app-main {
+    @apply flex-grow p-8 overflow-y-auto bg-white max-w-[1200px] mx-auto shadow-md;
+  }
+  
+  .app-footer {
+    @apply p-6 bg-gray-100 border-t border-gray-200 text-center text-gray-500 text-sm shadow-inner relative z-10 h-[60px] flex-shrink-0;
+  }
+  
+  .nav-link {
+    @apply flex items-center w-full py-3 px-4 text-gray-700 rounded transition-all font-medium bg-transparent border-none cursor-pointer text-left gap-3;
+  }
+  
+  .nav-link:hover {
+    @apply bg-blue-50 text-primary translate-x-1;
+  }
+  
+  .nav-link.active {
+    @apply bg-blue-50 text-primary font-semibold border-l-4 border-primary;
+  }
+  
+  .chapter-button {
+    @apply flex items-center justify-center w-full h-10 bg-gray-100 border border-gray-200 rounded text-gray-700 font-medium cursor-pointer transition-all;
+  }
+  
+  .chapter-button:hover {
+    @apply bg-blue-50 text-primary -translate-y-0.5 shadow-md;
+  }
+  
+  .chapter-button.active {
+    @apply bg-primary text-white border-primary;
+  }
+  
+  .book-title {
+    @apply text-2xl font-bold text-primary mb-6 text-center capitalize font-cinzel tracking-wide relative inline-block pb-2;
+  }
+  
+  .book-title::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 w-24 h-0.5 bg-primary rounded-md;
+    transform: translateX(-50%);
+  }
+  
+  .verses-container {
+    @apply max-h-[calc(100vh-400px)] overflow-y-auto p-5 rounded-lg bg-white shadow-md mt-5 border border-gray-200;
+  }
+  
+  .verse {
+    @apply block p-4 rounded-lg border-2 border-amber-200 bg-gradient-to-br from-amber-50/50 to-white hover:border-amber-300 hover:shadow-md transition-all duration-200 cursor-pointer;
+  }
+  
+  .verse-number {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-white text-sm font-bold mr-3 shadow-inner;
+  }
+  
+  .verse-text {
+    @apply text-amber-900 leading-relaxed;
+  }
+  
+  .chapter-title {
+    @apply text-2xl font-serif font-bold text-amber-900 text-center mb-8;
+  }
+  
+  /* Bible Search Styles */
+  .search-result-item {
+    @apply p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  .search-result-reference {
+    @apply font-bold text-primary mb-2;
+  }
+  
+  .search-result-content {
+    @apply text-gray-800 leading-relaxed;
+  }
+  
+  .search-highlight {
+    @apply bg-yellow-200 px-1 rounded;
+  }
+
+  /* Typography */
+  .bible-title {
+    @apply font-serif text-4xl font-bold text-gray-900 dark:text-white;
+  }
+
+  .bible-subtitle {
+    @apply font-serif text-2xl font-semibold text-gray-800 dark:text-gray-100;
+  }
+
+  .bible-text {
+    @apply text-lg leading-relaxed text-gray-700 dark:text-gray-300;
+  }
+
+  .verse-number {
+    @apply text-sm font-semibold text-blue-600 dark:text-blue-400 mr-1;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-md 
+           hover:from-amber-600 hover:to-amber-700 
+           focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 
+           transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-amber-50 text-amber-700 border border-amber-200 rounded-md
+           hover:bg-amber-100 hover:border-amber-300
+           focus:outline-none focus:ring-2 focus:ring-amber-200
+           transition-all duration-200;
+  }
+
+  /* Cards */
+  .bible-card {
+    @apply bg-white dark:bg-gray-800 shadow-sm rounded-lg overflow-hidden hover:shadow-md transition-shadow;
+  }
+
+  .card {
+    @apply bg-gradient-to-br from-amber-50 to-white p-6 rounded-xl border border-amber-200 
+           shadow-md hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Forms */
+  .form-input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white;
+  }
+
+  .input {
+    @apply px-4 py-2 rounded-md border border-amber-200 
+           focus:border-amber-500 focus:ring-2 focus:ring-amber-200 
+           bg-white/80 backdrop-blur-sm text-amber-900 placeholder-amber-400;
+  }
+
+  .form-select {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white appearance-none;
+    @apply appearance-none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23B45309' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+  }
+
+  /* Layout */
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Prose Overrides */
+.prose {
+  @apply max-w-none text-amber-900;
+  @apply text-amber-900;
+}
+
+.prose p {
+  @apply mb-0;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply font-serif text-amber-900;
+}
+
+.prose a {
+  @apply text-amber-600 hover:text-amber-700 no-underline border-b-2 border-amber-200 hover:border-amber-300;
+  @apply text-amber-600 hover:text-amber-700 no-underline;
+}
+
+.prose strong {
+  @apply text-amber-700 font-semibold;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-amber-200 text-amber-700;
+}
+
+.prose code {
+  @apply text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-md text-sm;
+}
+
+.prose pre {
+  @apply bg-amber-50 border border-amber-200 rounded-lg;
+}
+
+.prose ul > li::before {
+  @apply bg-amber-400;
+}
+
+.prose ol > li::before {
+  @apply text-amber-600;
+}
+
+/* Dark mode styles */
+.dark {
+  @apply bg-gray-900 text-white transition-colors duration-200;
+}
+
+.dark .app-sidebar {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .app-main {
+  @apply bg-gray-900;
+}
+
+.dark .nav-link {
+  @apply text-gray-300;
+}
+
+.dark .nav-link:hover {
+  @apply bg-gray-700 text-white;
+}
+
+.dark .chapter-button {
+  @apply bg-gray-800 border-gray-700 text-gray-300;
+}
+
+.dark .chapter-button:hover {
+  @apply bg-gray-700 text-white;
+}
+
+.dark .verses-container {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .verse-text {
+  @apply text-gray-300;
+}
+
+.dark .search-result-item {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .search-result-content {
+  @apply text-gray-300;
+}
+
+/* Bible verse hover effect */
+.verse:hover {
+  @apply bg-blue-50 dark:bg-blue-900/30 rounded transition-colors;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Button Focus States */
+button:focus, a:focus {
+  @apply outline-none ring-2 ring-amber-500 ring-offset-2;
+}
+
+/* Dropdown Styling */
+select {
+  @apply appearance-none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23B45309' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-amber-50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-amber-300 rounded-full hover:bg-amber-400;
+}
+
+.verse-container {
+  @apply space-y-4;
+}
+
+/* Verse Container */
+.verse-container {
+  @apply space-y-6 max-w-4xl mx-auto px-4;
+}
+
+/* Individual Verse */
+.verse {
+  @apply py-3 hover:bg-amber-50/50 transition-colors duration-200 border-b border-amber-100 last:border-b-0;
+}
+
+/* Verse Number */
+.verse-number {
+  @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-white text-sm font-bold mr-4 shadow-sm align-top;
+}
+
+/* Verse Text */
+.verse-text {
+  @apply text-amber-900 leading-relaxed inline-block;
+}
+
+/* Text Size Classes */
+.text-size-small .verse-text {
+  @apply text-base;
+}
+
+.text-size-medium .verse-text {
+  @apply text-lg;
+}
+
+.text-size-large .verse-text {
+  @apply text-xl;
+}
+
+.text-size-xlarge .verse-text {
+  @apply text-2xl;
+}
+
+/* Chapter Title */
+.chapter-title {
+  @apply text-2xl font-serif font-bold text-amber-900 text-center mb-8;
+}
+
+/* Font Size Controls */
+.font-size-controls {
+  @apply fixed bottom-4 right-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-lg border-2 border-amber-200 z-50;
+}
+
+.font-size-button {
+  @apply w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700 transition-all duration-200;
+}
+
+.font-size-button:disabled {
+  @apply from-amber-300 to-amber-400 cursor-not-allowed;
+}

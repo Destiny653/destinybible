@@ -1,0 +1,19 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="rays" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g>
+    <circle cx="400" cy="300" r="300" fill="url(#rays)"/>
+    <path d="M400,0 L400,600" stroke="white" stroke-width="5" stroke-opacity="0.3"/>
+    <path d="M0,300 L800,300" stroke="white" stroke-width="5" stroke-opacity="0.3"/>
+    <path d="M100,100 L700,500" stroke="white" stroke-width="5" stroke-opacity="0.3"/>
+    <path d="M700,100 L100,500" stroke="white" stroke-width="5" stroke-opacity="0.3"/>
+    <path d="M200,50 L600,550" stroke="white" stroke-width="3" stroke-opacity="0.2"/>
+    <path d="M600,50 L200,550" stroke="white" stroke-width="3" stroke-opacity="0.2"/>
+    <path d="M50,200 L750,400" stroke="white" stroke-width="3" stroke-opacity="0.2"/>
+    <path d="M750,200 L50,400" stroke="white" stroke-width="3" stroke-opacity="0.2"/>
+  </g>
+</svg>
