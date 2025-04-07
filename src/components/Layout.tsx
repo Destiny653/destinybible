@@ -25,7 +25,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 Home
               </Link>
               <Link
-                to="/bible-versions"
+                to="/versions"
                 className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-amber-900 hover:text-amber-700 
                   ${isActive('/bible-versions') ? 'text-amber-700' : ''}`}
               >

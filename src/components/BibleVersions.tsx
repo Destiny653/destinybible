@@ -40,6 +40,12 @@ const BibleVersions: React.FC = () => {
             <div className="h-12 w-12 text-red-500 mx-auto mb-4">⚠️</div>
             <h3 className="text-lg font-medium text-red-800 mb-2">Error Loading Bibles</h3>
             <p className="text-red-700">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            >
+              Try Again
+            </button>
           </div>
         </div>
       </div>
@@ -54,15 +60,12 @@ const BibleVersions: React.FC = () => {
             Select a Bible Version
           </h1>
 
-          {/* Language Filter */}
-          <div className="relative w-full max-w-xs mb-8">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <GlobeAltIcon className="h-5 w-5 text-amber-600" />
-            </div>
+          {/* Language Filter Dropdown */}
+          <div className="relative w-full max-w-xs">
             <select
               value={selectedLanguage}
               onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="block w-full pl-10 pr-10 py-3 text-base border-2 border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 rounded-lg bg-gradient-to-r from-amber-50 to-white shadow-sm"
+              className="block w-full pl-4 pr-10 py-2 text-base border-2 border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 rounded-lg bg-white shadow-sm"
             >
               <option value="all">All Languages ({bibles.length} versions)</option>
               {languages.map(language => (
@@ -71,7 +74,7 @@ const BibleVersions: React.FC = () => {
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-amber-600">
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-amber-700">
               <ChevronDownIcon className="h-5 w-5" />
             </div>
           </div>
@@ -95,7 +98,7 @@ const BibleVersions: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-xl font-serif font-semibold text-amber-900 mb-2 group-hover:text-amber-700 transition-colors truncate">
+                  <h2 className="text-xl font-semibold text-amber-900 mb-2 group-hover:text-amber-700 transition-colors truncate">
                     {bible.name}
                   </h2>
                   <p className="text-amber-700 text-sm mb-3 line-clamp-2">

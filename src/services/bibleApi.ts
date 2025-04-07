@@ -24,11 +24,12 @@ const handleApiError = (error: any) => {
 };
 
 // Types
-interface Bible {
+export interface Bible {
   id: string;
   name: string;
   description?: string;
   language: {
+    id: string;
     name: string;
     scriptDirection: 'LTR' | 'RTL';
   };
